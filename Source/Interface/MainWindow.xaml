@@ -72,14 +72,8 @@
                 <ListBox Name="Words" Grid.Column="0" Grid.Row="0" Margin="4" Width="210" 
                          SelectionChanged="Words_SelectionChanged" Style="{StaticResource strechedItemStyle}" 
                              HorizontalContentAlignment="Stretch"
-                            FontFamily="Consolas" FontSize="14" BorderThickness="0">
-                    <ListBox.ContextMenu>
-                        <ContextMenu x:Name="context_menu">
-                            <MenuItem Name="Delete" Header="Delete this word" Click="Delete_Click"></MenuItem>
-                        </ContextMenu>
-                    </ListBox.ContextMenu>
-                </ListBox>
-                <!--
+                            FontFamily="Consolas" FontSize="14" BorderThickness="0">            
+               
                 <ListBox.ContextMenu>
                             <ContextMenu x:Name="context_menu">
                                 <MenuItem Name="Delete" Header="Delete this word" Click="Delete_Click"></MenuItem>
@@ -145,8 +139,7 @@
                             </Setter>
                         </Style>
                     </ListBox.ItemContainerStyle>
-
-                -->
+                </ListBox>
                         
                 <Grid Grid.Column="1">
                     <Grid.RowDefinitions>
