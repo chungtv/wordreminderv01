@@ -1,0 +1,175 @@
+﻿<Window x:Class="Word_Reminder.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Icon="/Images/Favs.ico"
+        
+        Title="Word Reminder" Height="500" Width="600" WindowStyle="ToolWindow" ResizeMode="NoResize">
+   
+    <Window.Resources>
+        <LinearGradientBrush x:Key="creamGradient" StartPoint="0,0" EndPoint="0,1">
+            <GradientStop Color="#FFF3F3F3" Offset="0"/>
+            <GradientStop Color="#FFB0B2B4" Offset="0.522"/>
+            <GradientStop Color="#FFF3F3F3" Offset="1"/>
+        </LinearGradientBrush>
+        
+        <Style TargetType="ListBox" x:Key="strechedItemStyle">
+            <Setter Property="ItemTemplate">
+                <Setter.Value>
+                    <DataTemplate>
+                        
+                       <Grid Width="148">                              
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"/>
+                            </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="3"/>
+                                    <ColumnDefinition Width="1*"/>
+                                </Grid.ColumnDefinitions>
+
+                                    <TextBlock Text="{Binding words}" FontFamily="Consolas"  
+                                               VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Row="0" Grid.Column="1">
+                                    
+                                </TextBlock>
+                        </Grid>
+                        
+                    </DataTemplate>
+                    
+                </Setter.Value>                
+                
+            </Setter>
+        </Style>
+       
+    </Window.Resources>
+
+        <Grid >
+        <Grid >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="25"/>
+                <RowDefinition Height="300*"></RowDefinition>
+                <RowDefinition Height="130*"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0" Background="#FF417197">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="130"/>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="130"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="30"/>
+                </Grid.ColumnDefinitions>
+                <Label Content=" List Word " FontFamily="Consolas" FontSize="13" Foreground="White"
+                       Grid.Column="0" Background="#FF417197"
+                       />
+                <Label Content="Word " FontFamily="Consolas" FontSize="13" Foreground="White"
+                       Grid.Column="2" Background="#FF417197"
+                       />
+            </Grid>
+            <Grid Grid.Row="1" Background="#FF417197">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="220"/>
+                    <ColumnDefinition Width="355"/>
+                </Grid.ColumnDefinitions>
+
+                <ListBox Name="Words" Grid.Column="0" Grid.Row="0" Margin="4" Width="210" 
+                         SelectionChanged="Words_SelectionChanged" Style="{StaticResource strechedItemStyle}" 
+                             HorizontalContentAlignment="Stretch"
+                            FontFamily="Consolas" FontSize="14" BorderThickness="0">
+                    <ListBox.ContextMenu>
+                        <ContextMenu x:Name="context_menu">
+                            <MenuItem Name="Delete" Header="Delete this word" Click="Delete_Click"></MenuItem>
+                        </ContextMenu>
+                    </ListBox.ContextMenu>
+                </ListBox>
+               
+
+                
+                        
+                <Grid Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="120*"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="120*"/>
+                    </Grid.RowDefinitions>
+                    <TextBox Name="Mean" Grid.Row="0" Margin="4" 
+                             FontFamily="Consolas" FontSize="16" Background="#FFD4D6D8"
+                             TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility ="Visible"
+                             AcceptsReturn="True" IsReadOnly="True"></TextBox>
+                    <Label Content=" Notes " FontFamily="Consolas" FontSize="13" Foreground="White"
+                       Grid.Row="1" Background="#FF417197"
+                       />
+                    <TextBox Name="Notes" Grid.Row="2" Margin="4" 
+                             Background="#FFD4D6D8" FontFamily="Consolas" FontSize="16"
+                             AcceptsReturn="True"
+                             ></TextBox>
+                </Grid>
+            </Grid>
+            <Grid Grid.Row="2" Background="#FF417197">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="400"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="90"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="300"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Column="0" Grid.Row="0" Content=" Word " 
+                           FontFamily="Consolas" FontSize="16" Foreground="White"
+                           HorizontalAlignment="Center" VerticalAlignment="Center"></Label>
+                    <Label Grid.Column="0" Grid.Row="1" Content=" Mean " 
+                           FontFamily="Consolas" FontSize="16" Foreground="White"
+                           HorizontalAlignment="Center" VerticalAlignment="Center"></Label>
+                    <TextBox Grid.Column="1" Grid.Row="0" Name="T_Word" Margin="3" 
+                             Background="#FFD4D6D8" VerticalContentAlignment="Center"
+                             FontFamily="Consolas" FontSize="16"
+                             TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility ="Visible" 
+                             AcceptsReturn="True"
+                             ></TextBox>
+                    <TextBox Grid.Column="1" Grid.Row="1" Name="T_Mean" Margin="3" 
+                             Background="#FFD4D6D8"
+                             FontFamily="Consolas" FontSize="16"
+                             TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility ="Visible"
+                             ></TextBox>
+                </Grid>
+                <Grid Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="63"/>
+                        <RowDefinition Height="63"/>
+                    </Grid.RowDefinitions>
+                    <Button Name="New" Grid.Row="0" Margin="3" Click="New_Click">
+                        <StackPanel Orientation="Horizontal" Margin="-5,0,40,0">
+                            <Image Height="50" Width="80" Source="/Images/New.png"></Image>
+                            <TextBlock Text=" New " VerticalAlignment="Center" 
+                                       Foreground="White" FontFamily="Consolas" FontSize="16"/>
+                        </StackPanel>
+                        <Button.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                                <GradientStop Color="#FFD4D6D8" Offset="0"/>
+                                <GradientStop Color="#FFB0B2B4" Offset="0.578"/>
+                                <GradientStop Color="#FFCECECE" Offset="0.991"/>
+                            </LinearGradientBrush>
+                        </Button.Background>
+                    </Button>
+                    <Button Name="Save" Grid.Row="1" Margin="3" Click="Save_Click">
+                        <StackPanel Orientation="Horizontal" Margin="0,0,40,0">
+                            <Image Height="50" Width="80" Source="/Images/Save.png"></Image>
+                            <TextBlock Text=" Save " VerticalAlignment="Center" 
+                                       Foreground="White" FontFamily="Consolas" FontSize="16"/>
+                        </StackPanel>
+                        <Button.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                                <GradientStop Color="#FFD4D6D8" Offset="0"/>
+                                <GradientStop Color="#FFB0B2B4" Offset="0.578"/>
+                                <GradientStop Color="#FFCECECE" Offset="0.991"/>
+                            </LinearGradientBrush>
+                        </Button.Background>
+                    </Button>
+                </Grid>
+                
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>
