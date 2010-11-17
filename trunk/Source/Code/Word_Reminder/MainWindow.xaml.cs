@@ -6,6 +6,9 @@ using System.Windows.Controls;
 using System.Xml.Linq;
 using System.Windows.Threading;
 using System.Windows.Data;
+using System.Media;
+using System.Configuration;
+using System.Reflection;
 
 namespace Word_Reminder
 {
@@ -18,10 +21,10 @@ namespace Word_Reminder
         private CollectionViewSource viewSource;
         private List<ClzzWord> wordlist;
         private XElement doc;
-        private bool flagNewWord;
-        private int currentId;
+        private bool flagNewWord, playSound, autoStart;
+        private int currentId, time;
         private DispatcherTimer dispatch;
-
+        SoundPlayer simpleSound;
         public MainWindow()
         {
             InitializeComponent();
@@ -33,7 +36,9 @@ namespace Word_Reminder
             dispatch = new DispatcherTimer();
             viewSource = ((CollectionViewSource)(this.FindResource("viewSource")));
             flagNewWord = false;
-
+            simpleSound = new SoundPlayer(Word_Reminder.Icon.audio);
+            time = 30;
+            
             /// Update Data form xml
             loadData();
             ///
@@ -42,7 +47,7 @@ namespace Word_Reminder
             this.Closing += new System.ComponentModel.CancelEventHandler(MainWindow_Closing);
             this.Deactivated += new EventHandler(MainWindow_Deactivated);
             this.notify.Visible = true;
-            this.notify.Icon = Word_Reminder.Icon.drupal;
+            this.notify.Icon = Word_Reminder.Icon.Penguin;
             this.notify.ContextMenu = new System.Windows.Forms.ContextMenu();
             this.notify.ContextMenu.MenuItems.Add("Exit");
             this.notify.ContextMenu.MenuItems[0].Click += new EventHandler(this.mnuExit_Click);
@@ -51,7 +56,7 @@ namespace Word_Reminder
 
             //this.notify.BalloonTipClosed += new EventHandler(notify_BalloonTipClosed);
             dispatch = new System.Windows.Threading.DispatcherTimer();
-            dispatch.Interval = TimeSpan.FromSeconds(60);
+            dispatch.Interval = TimeSpan.FromSeconds(time);
             dispatch.Start();
             dispatch.Tick += new EventHandler(dispatch_Tick);
         }
@@ -80,19 +85,19 @@ namespace Word_Reminder
                 this.notify.BalloonTipText = string.Format(" Still haven't had any mean for '{0}' ", wordlist[currentId].Word);
 
             this.notify.ShowBalloonTip(10);
-
+            
         }
 
         private void mnuExit_Click(object sender, EventArgs e)
         {
             Application.Current.Shutdown();
         }
-        
+
         protected override void OnClosed(EventArgs e)
         {
             this.notify.Visible = false;
             base.OnClosed(e);
-        } 
+        }
 
         void notify_DoubleClick(object sender, EventArgs e)
         {
@@ -145,11 +150,11 @@ namespace Word_Reminder
                                                 new XElement("Notes", ""));
                     doc.Add(xml);
                     doc.Save("Database/Words.xml");
-                    updateStatus("Save successful !");
                     loadData();
 
                     viewSource.View.MoveCurrentToLast();
                     lstWords.ScrollIntoView(viewSource.View.CurrentItem);
+                    updateStatus("Save successful !");
                 }
             }
             // Edit existent word
@@ -167,11 +172,11 @@ namespace Word_Reminder
                 singleword.Element("Notes").Value = txtNote.Text;
 
                 doc.Save("Database/Words.xml");
-                updateStatus("Save successful !");
                 loadData();
 
                 viewSource.View.MoveCurrentToPosition(index);
                 lstWords.ScrollIntoView(viewSource.View.CurrentItem);
+                updateStatus("Save successful !");
             }
 
         }
@@ -179,6 +184,7 @@ namespace Word_Reminder
         private void lstWords_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             flagNewWord = false;
+            updateStatus("Ready");
         }
 
         private void btnNewWord_Click(object sender, RoutedEventArgs e)
@@ -220,6 +226,7 @@ namespace Word_Reminder
         private void Delete_Click(object sender, RoutedEventArgs e)
         {
             deleteWord();
+            updateStatus("Delete successful !");
         }
 
         public void deleteWord()
@@ -237,8 +244,8 @@ namespace Word_Reminder
 
             loadData();
 
-            clearText();
             viewSource.View.MoveCurrentToFirst();
+            lstWords.ScrollIntoView(viewSource.View.CurrentItem);
         }
 
         private List<ClzzWord> loadFile()
@@ -263,16 +270,12 @@ namespace Word_Reminder
 
         private void mnuOption_Click(object sender, RoutedEventArgs e)
         {
-            windowOption w = new windowOption();
-            w.ShowDialog();
-            if (w.DialogResult.HasValue && w.DialogResult.Value)
-            {
 
-            }
-            else
-            {
+        }
 
-            }
+        private void mnuAbout_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Written by :\n-folksonomy.hv\n-vohlevu\n\nCN07B - HCMUTRANS", "About", MessageBoxButton.OK, MessageBoxImage.Information);
         }
     }
 }
