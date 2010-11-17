@@ -13,13 +13,23 @@
     </Window.Resources>
     <DockPanel>
         <Menu DockPanel.Dock="Top" Background="#FF417197" FontSize="13" IsMainMenu="True">
-            <MenuItem Header="File">
-                <MenuItem Header="Option" Click="mnuOption_Click"/>
+            <MenuItem Header="File" Foreground="#FFB7E3FF">
+                <MenuItem Header="Option" Click="mnuOption_Click">
+                    <MenuItem.Icon>
+                        <Image Source="/Images/Settings.png" Width="20" Height="20"/>
+                    </MenuItem.Icon>
+                </MenuItem>
                 <Separator/>
-                <MenuItem Header="Exit" Click="mnuExit_Click"/>
+                <MenuItem Header="Exit" Click="mnuExit_Click">
+                    <MenuItem.Icon>
+                        <Image Source="/Images/Log-Out.png" Width="20" Height="20"/>
+                    </MenuItem.Icon>
+                </MenuItem>
             </MenuItem>
-            <MenuItem Header="Help">
+            <MenuItem Header="Help" Foreground="#FFB7E3FF">
                 <MenuItem Header="Help"/>
+                <Separator/>
+                <MenuItem Header="About" Click="mnuAbout_Click"/>
             </MenuItem>
         </Menu>
         <Grid Background="#FF417197">
@@ -36,9 +46,6 @@
                     <RowDefinition Height="25"/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
-                <Label Content=" List Word " FontFamily="Consolas" FontSize="14" Foreground="White"
-                    Grid.Column="0" Background="#FF417197"
-                   />
                 <Label Content=" Word " FontFamily="Consolas" FontSize="14" Foreground="White"
                     Grid.Column="2" Background="#FF417197" Margin="4 0"
                    />
