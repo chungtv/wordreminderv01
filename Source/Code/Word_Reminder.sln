@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Word_Reminder", "Word_Reminder\Word_Reminder.csproj", "{97646A07-CB59-4023-A8E6-3B8D144AF918}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Word_Reminder_Setup", "Word_Reminder_Setup\Word_Reminder_Setup.vdproj", "{412849DC-D3DA-412D-866A-D7FDF09FED00}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -13,6 +15,9 @@ Global
 		{97646A07-CB59-4023-A8E6-3B8D144AF918}.Debug|x86.Build.0 = Debug|x86
 		{97646A07-CB59-4023-A8E6-3B8D144AF918}.Release|x86.ActiveCfg = Release|x86
 		{97646A07-CB59-4023-A8E6-3B8D144AF918}.Release|x86.Build.0 = Release|x86
+		{412849DC-D3DA-412D-866A-D7FDF09FED00}.Debug|x86.ActiveCfg = Debug
+		{412849DC-D3DA-412D-866A-D7FDF09FED00}.Release|x86.ActiveCfg = Release
+		{412849DC-D3DA-412D-866A-D7FDF09FED00}.Release|x86.Build.0 = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
