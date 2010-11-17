@@ -38,7 +38,11 @@ namespace Word_Reminder
             flagNewWord = false;
             simpleSound = new SoundPlayer(Word_Reminder.Icon.audio);
             time = 30;
-            
+            playSound = true;
+
+            // Read Config File
+            readConfig();
+
             /// Update Data form xml
             loadData();
             ///
@@ -85,7 +89,11 @@ namespace Word_Reminder
                 this.notify.BalloonTipText = string.Format(" Still haven't had any mean for '{0}' ", wordlist[currentId].Word);
 
             this.notify.ShowBalloonTip(10);
-            
+
+            if (playSound)
+                simpleSound.Play();
+
+
         }
 
         private void mnuExit_Click(object sender, EventArgs e)
@@ -270,12 +278,64 @@ namespace Word_Reminder
 
         private void mnuOption_Click(object sender, RoutedEventArgs e)
         {
+            windowOption w = new windowOption(time, autoStart, playSound);
+            w.ShowDialog();
+            if (w.DialogResult.HasValue && w.DialogResult.Value)
+            {
+                ExeConfigurationFileMap fileMap = new ExeConfigurationFileMap();
+                Configuration config;
+                fileMap.ExeConfigFilename = "main.config";
+                config = ConfigurationManager.OpenMappedExeConfiguration(fileMap, ConfigurationUserLevel.None);
 
+                bool auto = (bool)w.cAuto.IsChecked;
+
+                string keyName = "Word_Reminder";
+                string assemblyLocation = Assembly.GetExecutingAssembly().Location;  // Or the EXE path.
+                if (auto)
+                {
+                    // Set Auto-start.
+                    if (!Util.IsAutoStartEnabled(keyName, assemblyLocation))
+                        Util.SetAutoStart(keyName, assemblyLocation);
+                }
+                else
+                {
+                    // Unset Auto-start.
+                    if (Util.IsAutoStartEnabled(keyName, assemblyLocation))
+                        Util.UnSetAutoStart(keyName);
+                }
+                config.AppSettings.Settings["autostart"].Value = auto.ToString();
+                autoStart = auto;
+
+                config.AppSettings.Settings["playsound"].Value = w.cSound.IsChecked.ToString();
+                playSound = (bool)w.cSound.IsChecked;
+                config.AppSettings.Settings["time"].Value = w.txtTime.Text;
+                time = int.Parse(w.txtTime.Text);
+
+                config.Save(ConfigurationSaveMode.Modified);
+            }
         }
 
         private void mnuAbout_Click(object sender, RoutedEventArgs e)
         {
             MessageBox.Show("Written by :\n-folksonomy.hv\n-vohlevu\n\nCN07B - HCMUTRANS", "About", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+
+        private void readConfig()
+        {
+            ExeConfigurationFileMap fileMap = new ExeConfigurationFileMap();
+            Configuration config;
+            fileMap.ExeConfigFilename = "main.config";
+            config = ConfigurationManager.OpenMappedExeConfiguration(fileMap, ConfigurationUserLevel.None);
+
+            String temp = config.AppSettings.Settings["time"].Value;
+            if (!int.TryParse(temp, out time))
+                time = 30;
+            temp = config.AppSettings.Settings["playsound"].Value;
+            if (!bool.TryParse(temp, out playSound))
+                playSound = true;
+            temp = config.AppSettings.Settings["autostart"].Value;
+            if (!bool.TryParse(temp, out autoStart))
+                autoStart = false;
         }
     }
 }

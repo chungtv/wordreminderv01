@@ -68,6 +68,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
@@ -85,6 +86,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Util.cs" />
     <Compile Include="windowOption.xaml.cs">
       <DependentUpon>windowOption.xaml</DependentUpon>
     </Compile>
@@ -141,6 +143,9 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="app.config" />
+    <Content Include="main.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -181,13 +186,25 @@
     <Resource Include="Images\Save.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Database\Words.xml" />
+    <Content Include="Database\Words.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="grimace.ico" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\drupal.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\audio.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Penguin.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Log-Out.png" />
+    <Resource Include="Images\Settings.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

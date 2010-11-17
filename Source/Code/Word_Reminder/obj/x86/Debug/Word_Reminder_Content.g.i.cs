@@ -8,6 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("grimace.ico")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/settings.png")]
 
 

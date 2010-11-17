@@ -20,14 +20,24 @@
         <Label Content="Time :" FontFamily="Consolas" FontSize="14" Foreground="White"
                VerticalAlignment="Center" Margin="5"
         />
-        <TextBox Name="txtWord" Grid.Column="1"
+        <TextBox Name="txtTime" Grid.Column="1"
                 Background="#FFD4D6D8" FontFamily="Consolas" FontSize="16"
                 VerticalContentAlignment="Center" Height="35" Margin="5"
                 />
-        <CheckBox Grid.Row="1" Grid.ColumnSpan="2" FontSize="14"
-                  VerticalAlignment="Center" Margin="5">
-            Auto run when window start.
-        </CheckBox>
+        <Grid Grid.Row="1" Grid.ColumnSpan="2">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <CheckBox Name="cAuto" FontSize="14"
+                      VerticalAlignment="Center" Margin="5">
+                Auto run when window start.
+            </CheckBox>
+            <CheckBox Name="cSound" FontSize="14" Grid.Row="1"
+                      VerticalAlignment="Center" Margin="5">
+                Play sound when tooltip display.
+            </CheckBox>
+        </Grid>
         <Grid Grid.Row="2" Grid.ColumnSpan="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"/>
