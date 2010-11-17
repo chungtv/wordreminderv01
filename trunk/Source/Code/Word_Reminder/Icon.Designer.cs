@@ -60,9 +60,9 @@ namespace Word_Reminder {
             }
         }
         
-        internal static System.Drawing.Icon Penguin {
+        internal static System.Drawing.Icon drupal {
             get {
-                object obj = ResourceManager.GetObject("Penguin", resourceCulture);
+                object obj = ResourceManager.GetObject("drupal", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
             }
         }

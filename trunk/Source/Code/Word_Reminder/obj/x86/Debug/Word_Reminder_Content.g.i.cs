@@ -8,6 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("database/words.xml")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("grimace.ico")]
 
 
