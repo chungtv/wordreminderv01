@@ -60,9 +60,15 @@ namespace Word_Reminder {
             }
         }
         
-        internal static System.Drawing.Icon drupal {
+        internal static System.IO.UnmanagedMemoryStream audio {
             get {
-                object obj = ResourceManager.GetObject("drupal", resourceCulture);
+                return ResourceManager.GetStream("audio", resourceCulture);
+            }
+        }
+        
+        internal static System.Drawing.Icon Penguin {
+            get {
+                object obj = ResourceManager.GetObject("Penguin", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
             }
         }

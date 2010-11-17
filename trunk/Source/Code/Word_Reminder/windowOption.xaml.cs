@@ -18,9 +18,15 @@ namespace Word_Reminder
     /// </summary>
     public partial class windowOption : Window
     {
-        public windowOption()
+        public windowOption(int time, bool autoStart, bool playSound)
         {
             InitializeComponent();
+
+            txtTime.Text = time.ToString();
+            if (autoStart)
+                cAuto.IsChecked = true;
+            if (playSound)
+                cSound.IsChecked = true;
         }
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {

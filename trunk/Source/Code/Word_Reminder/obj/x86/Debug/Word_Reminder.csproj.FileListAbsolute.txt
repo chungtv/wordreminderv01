@@ -41,6 +41,3 @@ C:\Documents and Settings\tiuliu\Desktop\Word_Reminder\obj\x86\Debug\Word_Remind
 C:\Documents and Settings\tiuliu\Desktop\Word_Reminder\obj\x86\Debug\Themes\Generic.baml
 C:\Documents and Settings\tiuliu\Desktop\Word_Reminder\obj\x86\Debug\windowOption.baml
 C:\Documents and Settings\tiuliu\Desktop\Word_Reminder\obj\x86\Debug\windowOption.g.cs
-C:\Documents and Settings\tiuliu\Desktop\Thursday\google\Source\Code\Word_Reminder\bin\Debug\Word_Reminder.exe.config
-C:\Documents and Settings\tiuliu\Desktop\Thursday\google\Source\Code\Word_Reminder\obj\x86\Debug\Word_Reminder.exe
-C:\Documents and Settings\tiuliu\Desktop\Thursday\google\Source\Code\Word_Reminder\obj\x86\Debug\Word_Reminder.pdb
